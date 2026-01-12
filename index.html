@@ -1,397 +1,96 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TALANTA MTAANI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Talanta Mtaani</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    :root{
-      --gold: #d4af37;
-      --gold-dark: #b8860b;
-      --black: #0b0b0b;
-      --muted: #a9a9a9;
-      --max-width: 1000px;
+      
+    body { margin:0; font-family: Arial, sans-serif; background:#000; color:#fff; }
+    header { background:#111; padding:15px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-size:22px; font-weight:bold; color:#FFD700; }
+    nav a { color:#fff; margin:0 10px; text-decoration:none; }
+    nav a:hover { color:#E63946; }
+    
+    .hero {
+      padding:80px 20px;
+      text-align:center;
+      background:linear-gradient(135deg,#000,#111);
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-      background: linear-gradient(270deg, #050505 0%, #FF0000 100%);
-      color: red;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:redscale;
-      line-height:1.45;
-    }
-
-    .container{
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 28px;
-    }
-
-    header{
-        
-     
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
+    .hero h1 { color:#FFD700; font-size:40px; }
+    .hero p { max-width:600px; margin:auto; }
+    .hero a {
+      display:inline-block;
+      margin-top:20px;
+      padding:12px 25px;
+      background:#E63946;
+      color:#fff;
       text-decoration:none;
-      color:var(--gold);
-    }
-    .brand .logo{
-        display: flex
-        
-     
+      border-radius:5px;
     }
 
-    nav ul{
-      display:flex;
-      list-style:none;
-      gap:18px;
-      padding:0;margin:0;
-      align-items:center;
-    }
-    nav a{
-      color:#fff;text-decoration:none;padding:8px 12px;border-radius:6px;
-      transition: all .15s ease;
-      font-weight:600;font-size:0.95rem;
-    }
-    nav a:hover{background:rgba(255,255,255,0.04);color:var(--gold)}
-    .cta-buttons{display:flex;gap:8px;align-items:center}
-    .btn{
-      background:transparent;border:1px solid var(--gold);color:var(--gold);
-      padding:8px 14px;border-radius:8px;font-weight:700;cursor:pointer;
-    }
-    .btn.primary{
-      background:var(--gold);color:var(--black);border-color:var(--gold);
-      box-shadow: 0 6px 18px rgba(212,175,55,0.12);
-    }
+    section { padding:50px 20px; max-width:900px; margin:auto; }
+    h2 { color:#FFD700; }
 
-    main{
-      padding:36px 0 64px;
+    footer {
+      background:#111;
+      padding:20px;
+      text-align:center;
     }
-
-    .hero{
-      display:flex;gap:28px;align-items:center;justify-content:space-between;
-      background: linear-gradient(180deg, rgba(212,175,55,0.06), rgba(212,175,55,0.02));
-      padding:28px;border-radius:12px;border:1px solid rgba(212,175,55,0.06);
+    footer a {
+      color:#FFD700;
+      margin:0 10px;
+      font-size:22px;
     }
-    .hero h1{
-      margin:0;font-size:2.2rem;color:var(--gold);
-      letter-spacing:0.6px;
-    }
-    .hero p{margin:8px 0 0;color:var(--muted)}
-
-    .layout{
-      margin-top:22px;display:grid;grid-template-columns: 1fr 380px;gap:22px;
-    }
-
-    /* Card */
-    .card{
-       
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03);
-    }
-
-    /* Forms */
-    .tabs{display:flex;gap:8px;margin-bottom:12px}
-    .tab{
-      flex:1;text-align:center;padding:10px;border-radius:8px;cursor:pointer;font-weight:700;
-      color:var(--gold);background:transparent;border:1px solid rgba(212,175,55,0.08);
-    }
-    .tab.active{background:var(--gold);color:var(--black);border-color:var(--gold)}
-
-    form{display:flex;flex-direction:column;gap:12px}
-    label{font-size:0.9rem;color:#e9e2c9}
-    input[type="text"], input[type="email"], input[type="password"], textarea, select{
-      width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);
-      background:rgba(0,0,0,0.45);color:#fff;font-size:0.95rem;
-    }
-    textarea{min-height:100px;resize:vertical;padding-top:10px}
-    .muted{font-size:0.85rem;color:var(--muted)}
-
-    .actions{display:flex;gap:10px;align-items:center;justify-content:flex-end;margin-top:8px}
-    .small{font-size:0.85rem;color:var(--muted)}
-
-    footer{
-      margin-top:38px;padding:18px 0;border-top:1px solid rgba(255,255,255,0.03);
-      text-align:center;color:var(--muted);font-size:0.9rem;
-    }
-
-    /* Responsive */
-    @media (max-width:900px){
-      .layout{grid-template-columns:1fr; }
-      .hero{flex-direction:column;align-items:flex-start}
-      .cta-buttons{display:none}
-    }
+    footer a:hover { color:#E63946; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-        <img src="logo.png" alt="My Company Logo" style="width:100px; height:auto;">
-      <a class="brand" href="#home">
-        <div 
-            class="logo" aria-hidden="true"></div>
-        <div>
-    
 
-          <div style="font-weight:700;">TALANTA MTAANI</div>
-          <div style="font-size:0.82rem;color:var(--muted);margin-top:2px">Community • Talent • Opportunity</div>
-        </div>
-      </a>
+<header>
+    <img src="logo.png" alt="Company Logo" width="100" height="auto">
+   <div class="logo" >Talanta Mtaani</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="register.html">Register</a>
+    <a href="profiles.html">Profiles</a>
+  </nav>
+</header>
 
-      <nav aria-label="Main navigation">
-        <ul>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+<div class="hero" id="home">
+  <h1>Empowering Local Talent</h1>
+  <p>
+    Talanta Mtaani is a community-based organisation that connects local artists
+    and grassroots organisations to talent, exposure, and real opportunities.
+  </p>
+  <a href="register.html">Join Talanta Mtaani</a>
+</div>
 
-      <div class="cta-buttons">
-        <button class="btn" id="open-login">Log In</button>
-        <button class="btn primary" id="open-signup">Sign Up</button>
-      </div>
-    </header>
+<section id="about">
+  <h2>About Us</h2>
+  <p>
+    Talanta Mtaani exists to identify, nurture, and promote local talent.
+    We bridge the gap between artists and organisations seeking creative skills,
+    jobs, events, and collaborations within the community.
+  </p>
+</section>
 
-    <main>
-      <section class="hero card" id="home" aria-labelledby="hero-heading">
-        <div>
-          <h1 id="hero-heading">Welcome to TALANTA MTAANI</h1>
-          <p>Connect with local opportunities, showcase talent, join initiatives, and register for community programs.</p>
-        </div>
-        <div style="min-width:220px;text-align:right">
-          <p class="muted">Ready to get started?</p>
-          <div style="margin-top:10px">
-            <button class="btn primary" id="hero-signup">Create Account</button>
-          </div>
-        </div>
-      </section>
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: talantamarima@gmail.com</p>
+  <p>WhatsApp: +254 0113174938</p>
+</section>
 
-      <div class="layout">
-        <!-- left: main content -->
-        <div>
-          <section class="card" id="menu" aria-labelledby="menu-heading">
-            <h2 id="menu-heading" style="margin-top:0;color:var(--gold)">Menu</h2>
-            <p class="muted">Navigate the site sections below. Use the forms on the right to log in, sign up, or register for special programs.</p>
-            <ul style="color:#fff;margin-top:12px;line-height:1.9">
-              <li><strong>Programs:</strong> Local shows, workshops, micro-grants</li>
-              <li><strong>Talent Directory:</strong> Find performers, artisans, and creators</li>
-              <li><strong>Events:</strong> Community showcases and open mics</li>
-            </ul>
-          </section>
-
-          <section class="card" id="about" aria-labelledby="about-heading" style="margin-top:18px">
-            <h2 id="about-heading" style="margin-top:0;color:var(--gold)">About</h2>
-            <p class="muted">TALANTA MTAANI is a grassroots initiative to spotlight local talent and create pathways to opportunity. We connect community members with events, mentorship and resources.</p>
-            <p style="margin-top:10px;color:#fff">Our mission is to empower creators and build sustainable local networks where talent can be seen, supported, and hired.</p>
-          </section>
-
-          <section class="card" id="contact" aria-labelledby="contact-heading" style="margin-top:18px">
-            <h2 id="contact-heading" style="margin-top:0;color:var(--gold)">Contact</h2>
-            <p class="muted">Questions or partnership enquiries? Send us a message.</p>
-
-            <form id="contact-form" onsubmit="event.preventDefault(); contactSubmit();">
-              <label for="contact-name">Your name</label>
-              <input id="contact-name" type="text" required placeholder="Jane Doe" />
-
-              <label for="contact-email">Email</label>
-              <input id="contact-email" type="email" required placeholder="you@example.com" />
-
-              <label for="contact-message">Message</label>
-              <textarea id="contact-message" placeholder="Tell us about your enquiry..." required></textarea>
-
-              <div class="actions">
-                <div class="small">We'll reply within 2 business days</div>
-                <button class="btn primary" type="submit">Send Message</button>
-              </div>
-            </form>
-          </section>
-        </div>
-
-        <!-- right: auth column -->
-        <aside>
-          <div class="card" id="auth-card" aria-labelledby="auth-heading">
-            <h3 id="auth-heading" style="margin:0 0 10px 0;color:var(--gold)">Account</h3>
-
-            <div class="tabs" role="tablist" aria-label="Authentication tabs">
-              <button class="tab active" role="tab" aria-selected="true" data-tab="login">Log In</button>
-              <button class="tab" role="tab" aria-selected="false" data-tab="signup">Sign Up</button>
-              <button class="tab" role="tab" aria-selected="false" data-tab="register">Registration</button>
-            </div>
-
-            <div id="tab-panels">
-              <!-- Login -->
-              <div class="tab-panel" data-panel="login">
-                <form id="login-form" onsubmit="event.preventDefault(); loginSubmit();">
-                  <label for="login-email">Email</label>
-                  <input id="login-email" type="email" required placeholder="you@example.com" />
-
-                  <label for="login-password">Password</label>
-                  <input id="login-password" type="password" required placeholder="••••••••" />
-
-                  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
-                    <label style="font-weight:600; font-size:0.9rem; color:var(--muted)"><input type="checkbox" id="remember" /> Remember</label>
-                    <a href="#" style="color:var(--gold);text-decoration:none;font-weight:600;font-size:0.9rem">Forgot?</a>
-                  </div>
-
-                  <div class="actions">
-                    <button class="btn" type="button" onclick="switchTab('signup')">Create account</button>
-                    <button class="btn primary" type="submit">Log In</button>
-                  </div>
-                </form>
-              </div>
-
-              <!-- Sign Up -->
-              <div class="tab-panel" data-panel="signup" style="display:none">
-                <form id="signup-form" onsubmit="event.preventDefault(); signupSubmit();">
-                  <label for="signup-name">Full name</label>
-                  <input id="signup-name" type="text" required placeholder="Jane Doe" />
-
-                  <label for="signup-email">Email</label>
-                  <input id="signup-email" type="email" required placeholder="you@example.com" />
-
-                  <label for="signup-password">Password</label>
-                  <input id="signup-password" type="password" required placeholder="At least 8 characters" />
-
-                  <label for="signup-role">I am a</label>
-                  <select id="signup-role">
-                    <option>Performer / Artist</option>
-                    <option>Event Organizer</option>
-                    <option>Volunteer</option>
-                    <option>Audience</option>
-                  </select>
-
-                  <div class="actions">
-                    <button class="btn" type="button" onclick="switchTab('login')">Already have account</button>
-                    <button class="btn primary" type="submit">Sign Up</button>
-                  </div>
-                </form>
-              </div>
-
-              <!-- Registration (separate program registration) -->
-              <div class="tab-panel" data-panel="register" style="display:none">
-                <form id="register-form" onsubmit="event.preventDefault(); registerSubmit();">
-                  <label for="reg-program">Program</label>
-                  <select id="reg-program" required>
-                    <option value="">Choose a program...</option>
-                    <option>Community Showcase</option>
-                    <option>Micro-grant Application</option>
-                    <option>Mentorship Program</option>
-                  </select>
-
-                  <label for="reg-name">Full name</label>
-                  <input id="reg-name" type="text" required placeholder="Jane Doe" />
-
-                  <label for="reg-email">Email</label>
-                  <input id="reg-email" type="email" required placeholder="you@example.com" />
-
-                  <label for="reg-details">Tell us about your talent / reason for registering</label>
-                  <textarea id="reg-details" placeholder="Short description..." required></textarea>
-
-                  <div class="actions">
-                    <button class="btn" type="button" onclick="switchTab('login')">Back</button>
-                    <button class="btn primary" type="submit">Register</button>
-                  </div>
-                </form>
-                <p class="muted" style="margin-top:10px">Registration is reviewed by the TALANTA MTAANI team. You will be contacted with next steps.</p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="card" style="margin-top:14px">
-            <h4 style="margin:0 0 10px 0;color:var(--gold)">Why join?</h4>
-            <ul style="margin:0;padding-left:18px;color:#fff">
-              <li>Be visible to local organizers</li>
-              <li>Access mentorship & funding</li>
-              <li>Receive event invites</li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-    </main>
-
-    <footer>
-      © <span id="year"></span> TALANTA MTAANI — Built for community. <span style="display:block;margin-top:6px">Email: <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSKhpkKdtSTjMmbHpsHfTPGBfMMBDFjXxTTTrxRpJkWTnsgzsRDHwTXkCkqFdgHqtzzxDTdG" style="color:var(--gold);text-decoration:none">Marimatalanta@gmail.com</a></span>
-    </footer>
-  </div>
-
-  <script>
-    // Set year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Tab switching
-    const tabs = document.querySelectorAll('.tab');
-    const panels = document.querySelectorAll('.tab-panel');
-
-    function switchTab(name){
-      tabs.forEach(t=>{
-        const active = t.dataset.tab === name;
-        t.classList.toggle('active', active);
-        t.setAttribute('aria-selected', active ? 'true' : 'false');
-      });
-      panels.forEach(p=>{
-        p.style.display = (p.dataset.panel === name) ? '' : 'none';
-      });
-      // move focus to first input of panel
-      const panel = document.querySelector('.tab-panel[data-panel="'+name+'"]');
-      const input = panel ? panel.querySelector('input, select, textarea, button') : null;
-      if(input) input.focus();
-    }
-
-    tabs.forEach(t=> t.addEventListener('click', ()=> switchTab(t.dataset.tab)));
-
-    // Header buttons
-    document.getElementById('open-login').addEventListener('click', ()=> switchTab('login'));
-    document.getElementById('open-signup').addEventListener('click', ()=> switchTab('signup'));
-    document.getElementById('hero-signup').addEventListener('click', ()=> switchTab('signup'));
-
-    // Forms: placeholder JS handlers (client-side demo)
-    function loginSubmit(){
-      const email = document.getElementById('login-email').value.trim();
-      if(!email){ alert('Enter your email'); return; }
-      // In production, POST to your auth API
-      alert('Logged in (demo): ' + email);
-      // reset
-      //document.getElementById('login-form').reset();
-    }
-    function signupSubmit(){
-      const name = document.getElementById('signup-name').value.trim();
-      const email = document.getElementById('signup-email').value.trim();
-      if(name.length < 2) { alert('Please enter your name'); return; }
-      if(email.indexOf('@')===-1){ alert('Enter a valid email'); return; }
-      alert('Account created (demo) for ' + name);
-      // In production: call sign-up endpoint and show confirmation
-    }
-    function registerSubmit(){
-      const program = document.getElementById('reg-program').value;
-      const name = document.getElementById('reg-name').value.trim();
-      if(!program){ alert('Select a program'); return; }
-      alert('Registration submitted (demo) for ' + name + ' (' + program + ')');
-    }
-    function contactSubmit(){
-      const email = document.getElementById('contact-email').value.trim();
-      if(!email){ alert('Enter an Email'); return; }
-      alert('Message sent (demo). Thank you!');
-      document.getElementById('contact-form').reset();
-    }
-  
-  </script>
-  <!-- ... existing HTML ... -->
-<div id="react-app-root"></div>
-<!-- ... existing HTML ... -->
+<footer>
+  <a href="https://whatsapp.com/channel/0029Vb7npfmHVvTeSa1iqZ21"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://www.tiktok.com/@talantamarima?is_from_webapp=1&sender_device=pc"><i class="fab fa-tiktok"></i></a>
+  <a href="https://www.facebook.com/profile.php?id=61586133253736"><i class="fab fa-facebook"></i></a>
+  <a href="mailto:marimatalanta@gmail.com"><i class="fas fa-envelope"></i></a>
+  <p>© 2025 Talanta Mtaani</p>
+</footer>
 
 </body>
 </html>
+

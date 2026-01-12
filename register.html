@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register | Talanta Mtaani</title>
+  <style>
+    body { background:#000; color:#fff; font-family:Arial; }
+    form { max-width:500px; margin:50px auto; background:#111; padding:20px; }
+    input, select, button {
+      width:100%; padding:10px; margin:10px 0;
+    }
+    button { background:#FFD700; border:none; cursor:pointer; }
+  </style>
+</head>
+<body>
+
+<form id="regForm">
+  <h2>Register Artist / Organization</h2>
+
+  <input type="text" id="name" placeholder="Name" required>
+  <select id="type">
+    <option>Artist</option>
+    <option>Organization</option>
+  </select>
+  <input type="text" id="talent" placeholder="Talent / Service">
+  <input type="text" id="contact" placeholder="Phone / Email">
+  <input type="text" id="location" placeholder="Location">
+
+  <button type="submit">Create Profile</button>
+</form>
+
+<script>
+  document.getElementById("regForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let profiles = JSON.parse(localStorage.getItem("profiles")) || [];
+
+    let profile = {
+      name: name.value,
+      type: type.value,
+      talent: talent.value,
+      contact: contact.value,
+      location: location.value
+    };
+
+    profiles.push(profile);
+    localStorage.setItem("profiles", JSON.stringify(profiles));
+
+    alert("Profile created successfully!");
+    window.location.href = "profiles.html";
+  });
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profiles | Talanta Mtaani</title>
+  <style>
+    body { background:#000; color:#fff; font-family:Arial; }
+    .container { max-width:900px; margin:auto; }
+    input { padding:10px; width:100%; margin:20px 0; }
+    .card {
+      background:#111; padding:15px; margin-bottom:10px;
+      border-left:5px solid #FFD700;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Registered Artists & Organizations</h2>
+  <input type="text" id="search" placeholder="Search by name or talent">
+
+  <div id="list"></div>
+</div>
+
+<script>
+  let profiles = JSON.parse(localStorage.getItem("profiles")) || [];
+  let list = document.getElementById("list");
+
+  function display(data){
+    list.innerHTML = "";
+    data.forEach(p => {
+      list.innerHTML += `
+        <div class="card">
+          <h3>${p.name} (${p.type})</h3>
+          <p>Talent: ${p.talent}</p>
+          <p>Contact: ${p.contact}</p>
+          <p>Location: ${p.location}</p>
+        </div>`;
+    });
+  }
+
+  display(profiles);
+
+  document.getElementById("search").addEventListener("keyup", function(){
+    let q = this.value.toLowerCase();
+    display(profiles.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.talent.toLowerCase().includes(q)
+    ));
+  });
+</script>
+
+</body>
+</html>
