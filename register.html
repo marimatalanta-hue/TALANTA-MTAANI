@@ -1,55 +1,195 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Register | Talanta Mtaani</title>
-  <style>
-    body { background:#000; color:#fff; font-family:Arial; }
-    form { max-width:500px; margin:50px auto; background:#111; padding:20px; }
-    input, select, button {
-      width:100%; padding:10px; margin:10px 0;
+<header class="header">
+  <a href="index.html">
+  <img src="logo.png" class="logo">
+    
+  </div>
+    
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="profiles.html">Profiles</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+    <a href="register.html">Register</a>
+  </nav>
+  
+   <style>
+    body {
+      background: black;
+      color: gold;
+      font-family: Arial;
+      text-align: center;
+      padding-top: 5px;
     }
-    button { background:#FFD700; border:none; cursor:pointer; }
+    input {
+      padding: 10px;
+      margin: 10px;
+      width: 260px;
+    }
+    button {
+      padding: 0px 25px;
+      background: red;
+      color: gold;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: gold;
+      color: black;
+    }
+    
+   
+   regForm {
+              padding: 0px 25px;
+      background: red;
+      color: gold;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+           
+        
+    }
   </style>
-</head>
-<body>
+</header>
 
 <form id="regForm">
-  <h2>Register Artist / Organization</h2>
+  <input type="text" id="name" placeholder="Artist / Organisation Name" required>
 
-  <input type="text" id="name" placeholder="Name" required>
-  <select id="type">
+  <select id="category" required>
+    <option value="">Select Category</option>
     <option>Artist</option>
-    <option>Organization</option>
+    <option>Organisation</option>
   </select>
-  <input type="text" id="talent" placeholder="Talent / Service">
-  <input type="text" id="contact" placeholder="Phone / Email">
-  <input type="text" id="location" placeholder="Location">
-
-  <button type="submit">Create Profile</button>
+  <input type="text" id="job" placeholder="Job Type">
+  <input type="text" id="skill" placeholder="Skill">
+  <input type="email" id="email" placeholder="Email">
+  <input type="tel" id="phone" placeholder="Phone Number">
+  <textarea id="bio" placeholder="Short Bio / Hero Description"></textarea>
+  <label style="color:gold;">
+  <input type="checkbox" id="showContact" checked>
+  Allow people to contact me via WhatsApp
+</label>
+<button type="submit">Submit Registration</button>
 </form>
 
 <script>
-  document.getElementById("regForm").addEventListener("submit", function(e){
-    e.preventDefault();
+document.getElementById("regForm").addEventListener("submit", function(e){
+  e.preventDefault();
 
-    let profiles = JSON.parse(localStorage.getItem("profiles")) || [];
+  let reader = new FileReader();
+  let file = document.getElementById("photo").files[0];
 
-    let profile = {
+  reader.onloadend = function () {
+    let data = {
+      id: Date.now(),
       name: name.value,
-      type: type.value,
-      talent: talent.value,
-      contact: contact.value,
-      location: location.value
+      category: category.value,
+      job: job.value,
+      skill: skill.value,
+      phone: phone.value,
+      bio: bio.value,
+      showContact: showContact.checked,
+      verified: verified.checked,
+      photo: reader.result || ""
     };
 
-    profiles.push(profile);
-    localStorage.setItem("profiles", JSON.stringify(profiles));
+    let records = JSON.parse(localStorage.getItem("talantaData")) || [];
+    records.push(data);
+    localStorage.setItem("talantaData", JSON.stringify(records));
 
-    alert("Profile created successfully!");
-    window.location.href = "profiles.html";
-  });
+    alert("Registration Successful!");
+    document.getElementById("regForm").reset();
+  };
+
+  if (file) reader.readAsDataURL(file);
+  else reader.onloadend();
+});
 </script>
 
-</body>
-</html>
+
+<label style="color:gold;">Profile Picture</label>
+<input type="file" id="photo" accept="image/*">
+
+<label style="color:gold;">
+  <input type="checkbox" id="verified">
+  Verified by Talanta Mtaani
+</label>
+
+<style>
+.header {
+  background: linear-gradient(to right, black, #8b0000);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 2px solid gold;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 45px;
+}
+
+.logo-text {
+  color: gold;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+nav a {
+  color: gold;
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: red;
+}
+</style>
+
+<style>
+.header {
+  background: linear-gradient(to right, black, #8b0000);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 2px solid gold;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 45px;
+}
+
+.logo-text {
+  color: gold;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+nav a {
+  color: gold;
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: red;
+}
+</style>
 

@@ -1,53 +1,164 @@
 <!DOCTYPE html>
 <html>
+    <header class="header">
+   <a href="index.html">
+  <img src="logo.png" class="logo">
+    
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="profiles.html">Profiles</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+    <a href="register.html">Register</a>
+  </nav>
+</header>
+
 <head>
-  <title>Profiles | Talanta Mtaani</title>
+  <title>Profiles | TALANTA MTAANI</title>
   <style>
-    body { background:#000; color:#fff; font-family:Arial; }
-    .container { max-width:900px; margin:auto; }
-    input { padding:10px; width:100%; margin:20px 0; }
+    body { background:black; color:gold; font-family:Arial; padding:20px; }
+    h1 { text-align:center; color:red; }
+
+    .search {
+      display:flex; gap:10px; margin-bottom:20px;
+    }
+    input, select {
+      padding:8px; width:100%;
+    }
+
+    .profiles {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:20px;
+    }
+
     .card {
-      background:#111; padding:15px; margin-bottom:10px;
-      border-left:5px solid #FFD700;
+      border:1px solid gold;
+      border-radius:10px;
+      padding:15px;
+      background:#111;
+      cursor:pointer;
+    }
+
+    .card img {
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:8px;
+      margin-bottom:10px;
+    }
+
+    .badge {
+      background:gold;
+      color:black;
+      font-size:12px;
+      padding:2px 6px;
+      border-radius:4px;
+      margin-left:5px;
+    }
+
+    .wa {
+      display:inline-block;
+      margin-top:8px;
+      background:green;
+      color:white;
+      padding:8px;
+      border-radius:50%;
+      text-decoration:none;
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h2>Registered Artists & Organizations</h2>
-  <input type="text" id="search" placeholder="Search by name or talent">
+<h1>Talanta Mtaani Profiles</h1>
 
-  <div id="list"></div>
+<div class="search">
+  <input id="skillFilter" placeholder="Search by skill">
+  <select id="categoryFilter">
+    <option value="">All Categories</option>
+    <option>Artist</option>
+    <option>Organisation</option>
+  </select>
 </div>
 
+<div class="profiles" id="profileList"></div>
+
 <script>
-  let profiles = JSON.parse(localStorage.getItem("profiles")) || [];
-  let list = document.getElementById("list");
+let data = JSON.parse(localStorage.getItem("talantaData")) || [];
 
-  function display(data){
-    list.innerHTML = "";
-    data.forEach(p => {
-      list.innerHTML += `
-        <div class="card">
-          <h3>${p.name} (${p.type})</h3>
-          <p>Talent: ${p.talent}</p>
-          <p>Contact: ${p.contact}</p>
-          <p>Location: ${p.location}</p>
-        </div>`;
-    });
-  }
+function render(){
+  let skill = skillFilter.value.toLowerCase();
+  let cat = categoryFilter.value;
+  profileList.innerHTML = "";
 
-  display(profiles);
-
-  document.getElementById("search").addEventListener("keyup", function(){
-    let q = this.value.toLowerCase();
-    display(profiles.filter(p =>
-      p.name.toLowerCase().includes(q) ||
-      p.talent.toLowerCase().includes(q)
-    ));
+  data.filter(p =>
+    (!skill || (p.skill||"").toLowerCase().includes(skill)) &&
+    (!cat || p.category === cat)
+  ).forEach(p => {
+    profileList.innerHTML += `
+      <div class="card" onclick="openProfile(${p.id})">
+        ${p.photo ? `<img src="${p.photo}">` : ""}
+        <h3>${p.name}
+          ${p.verified ? `<span class="badge">Verified</span>` : ""}
+        </h3>
+        <p>${p.skill || ""}</p>
+        ${p.showContact ? `
+          <a class="wa" href="https://wa.me/${p.phone}" onclick="event.stopPropagation()">🟢</a>
+        ` : ""}
+      </div>
+    `;
   });
+}
+
+function openProfile(id){
+  localStorage.setItem("currentProfile", id);
+  window.location.href = "profile.html";
+}
+
+skillFilter.oninput = categoryFilter.onchange = render;
+render();
 </script>
 
 </body>
 </html>
+
+<style>
+.header {
+  background: linear-gradient(to right, black, #8b0000);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 2px solid gold;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 45px;
+}
+
+.logo-text {
+  color: gold;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+nav a {
+  color: gold;
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: red;
+}
+</style>

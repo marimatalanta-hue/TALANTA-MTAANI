@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <header class="header">
+  <a href="index.html">
+  <img src="logo.png" class="logo">
+    
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="profiles.html">Profiles</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+    <a href="register.html">Register</a>
+  </nav>
+</header>
+
+<head>
+  <title>Profile | TALANTA MTAANI</title>
+  <style>
+    body { background:black; color:gold; font-family:Arial; padding:20px; }
+    img { width:100%; max-width:400px; border-radius:10px; }
+    .badge { background:gold; color:black; padding:4px 8px; }
+    a { color:gold; text-decoration:none; }
+  </style>
+</head>
+<body>
+
+<div id="profile"></div>
+
+<a href="profiles.html">⬅ Back to Profiles</a>
+
+<script>
+let id = localStorage.getItem("currentProfile");
+let data = JSON.parse(localStorage.getItem("talantaData")) || [];
+let p = data.find(x => x.id == id);
+
+if (p){
+  profile.innerHTML = `
+    ${p.photo ? `<img src="${p.photo}">` : ""}
+    <h1>${p.name} ${p.verified ? `<span class="badge">Verified</span>` : ""}</h1>
+    <p><strong>Category:</strong> ${p.category}</p>
+    <p><strong>Skill:</strong> ${p.skill}</p>
+    <p>${p.bio}</p>
+
+    ${p.showContact ? `
+      <a href="https://wa.me/${p.phone}" target="_blank">Contact on WhatsApp</a>
+    ` : `<p>Contact is private</p>`}
+  `;
+}
+</script>
+
+</body>
+</html>
+
+<style>
+.header {
+  background: linear-gradient(to right, black, #8b0000);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 2px solid gold;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 45px;
+}
+
+.logo-text {
+  color: gold;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+nav a {
+  color: gold;
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: red;
+}
+</style>
+
+

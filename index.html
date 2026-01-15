@@ -1,96 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+    <header class="header">
+  <div class="logo-box">
+    <img src="logo.png" alt="Talanta Mtaani Logo" class="logo">
+    <span class="logo-text">TALANTA MTAANI</span>
+    
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="profiles.html">Profiles</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+    <a href="register.html">Register</a>
+  </nav>
+        
+</header>
+
 <head>
   <meta charset="UTF-8">
-  <title>Talanta Mtaani</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>TALANTA MTAANI</title>
   <style>
-      
-    body { margin:0; font-family: Arial, sans-serif; background:#000; color:#fff; }
-    header { background:#111; padding:15px; display:flex; align-items:center; justify-content:space-between; }
-    .logo { font-size:22px; font-weight:bold; color:#FFD700; }
-    nav a { color:#fff; margin:0 10px; text-decoration:none; }
-    nav a:hover { color:#E63946; }
-    
-    .hero {
-      padding:80px 20px;
-      text-align:center;
-      background:linear-gradient(135deg,#000,#111);
-    }
-    .hero h1 { color:#FFD700; font-size:40px; }
-    .hero p { max-width:600px; margin:auto; }
-    .hero a {
-      display:inline-block;
-      margin-top:20px;
-      padding:12px 25px;
-      background:#E63946;
-      color:#fff;
-      text-decoration:none;
-      border-radius:5px;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: black;
+      color: gold;
     }
 
-    section { padding:50px 20px; max-width:900px; margin:auto; }
-    h2 { color:#FFD700; }
+    header {
+      background: linear-gradient(to right, black, red);
+      padding: 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      color: gold;
+      margin: 0;
+    }
+
+    nav a {
+      color: gold;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: red;
+    }
+
+    .hero {
+      height: 80vh;
+      background: url("hero.jpg") no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero-box {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 30px;
+      border: 2px solid gold;
+      border-radius: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #ffd700;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: red;
+      color: gold;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    .btn:hover {
+      background: gold;
+      color: black;
+    }
 
     footer {
-      background:#111;
-      padding:20px;
-      text-align:center;
+      background: black;
+      color: gold;
+      text-align: center;
+      padding: 15px;
+      border-top: 1px solid red;
     }
-    footer a {
-      color:#FFD700;
-      margin:0 10px;
-      font-size:22px;
-    }
-    footer a:hover { color:#E63946; }
+    .hero-logo {
+  width: 120px;
+  margin-bottom: 15px;
+}
   </style>
 </head>
 <body>
 
-<header>
-    <img src="logo.png" alt="Company Logo" width="100" height="auto">
-   <div class="logo" >Talanta Mtaani</div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <a href="register.html">Register</a>
-    <a href="profiles.html">Profiles</a>
-  </nav>
-</header>
-
-<div class="hero" id="home">
-  <h1>Empowering Local Talent</h1>
-  <p>
-    Talanta Mtaani is a community-based organisation that connects local artists
-    and grassroots organisations to talent, exposure, and real opportunities.
-  </p>
-  <a href="register.html">Join Talanta Mtaani</a>
-</div>
-
-<section id="about">
-  <h2>About Us</h2>
-  <p>
-    Talanta Mtaani exists to identify, nurture, and promote local talent.
-    We bridge the gap between artists and organisations seeking creative skills,
-    jobs, events, and collaborations within the community.
-  </p>
-</section>
-
-<section id="contact">
-  <h2>Contact Us</h2>
-  <p>Email: talantamarima@gmail.com</p>
-  <p>WhatsApp: +254 0113174938</p>
+<section class="hero">
+     <div class="hero-box">
+    <p>
+      Talanta Mtaani is a community-based platform created to empower local artists,
+      organizations, and skilled individuals by connecting them to real opportunities.
+      We promote talent, create jobs, support creativity, and build strong community
+      networks that uplift youth and transform livelihoods at the grassroots level.
+    </p>
+    <a href="register.html" class="btn">Join Talanta Mtaani</a>
+  </div>
 </section>
 
 <footer>
-  <a href="https://whatsapp.com/channel/0029Vb7npfmHVvTeSa1iqZ21"><i class="fab fa-whatsapp"></i></a>
-  <a href="https://www.tiktok.com/@talantamarima?is_from_webapp=1&sender_device=pc"><i class="fab fa-tiktok"></i></a>
-  <a href="https://www.facebook.com/profile.php?id=61586133253736"><i class="fab fa-facebook"></i></a>
-  <a href="mailto:marimatalanta@gmail.com"><i class="fas fa-envelope"></i></a>
-  <p>© 2025 Talanta Mtaani</p>
+  © 2026 TALANTA MTAANI – Empowering Community Talent
 </footer>
 
 </body>
 </html>
 
+<style>
+.header {
+  background: linear-gradient(to right, black, #8b0000);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 2px solid gold;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 45px;
+}
+
+.logo-text {
+  color: gold;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+nav a {
+  color: gold;
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: red;
+}
+</style>

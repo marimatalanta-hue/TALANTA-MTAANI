@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <header class="header">
+   <a href="index.html">
+  <img src="logo.png" class="logo">
+   </a>
+ <nav>
+    <a href="index.html">Home</a>
+    <a href="profiles.html">Profiles</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+    <a href="register.html">Register</a>
+  </nav>
+        
+</header>
+
+<head>
+  <title>Admin Login | TALANTA MTAANI</title>
+  <style>
+    body {
+      background: black;
+      color: gold;
+      font-family: Arial;
+      text-align: center;
+      padding-top: 5px;
+    }
+    input {
+      padding: 10px;
+      margin: 10px;
+      width: 260px;
+    }
+    button {
+      padding: 0px 25px;
+      background: red;
+      color: gold;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: gold;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Admin Login</h1>
+
+<input type="text" id="username" placeholder="Username"><br>
+<input type="password" id="password" placeholder="Password"><br>
+<button onclick="login()">Login</button>
+
+<p id="error" style="color:red;"></p>
+
+<a href="index.html" style="color:gold;"> Back to Home</a>
+
+<script>
+function login(){
+  const adminUser = "admin";
+  const adminPass = "12345"; // change this
+
+  let user = document.getElementById("username").value;
+  let pass = document.getElementById("password").value;
+
+  if(user === adminUser && pass === adminPass){
+    sessionStorage.setItem("adminLoggedIn", "true");
+    window.location.href = "admin-dashboard.html";
+  } else {
+    document.getElementById("error").innerText =
+      "Invalid username or password!";
+  }
+}
+</script>
+
+</body>
+</html>
+
+<style>
+.header {
+  background: linear-gradient(to right, black, #8b0000);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 2px solid gold;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 45px;
+}
+
+.logo-text {
+  color: gold;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+nav a {
+  color: gold;
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: red;
+}
+

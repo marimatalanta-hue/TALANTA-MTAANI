@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <header class="header">
+     <a href="index.html">
+  <img src="logo.png" class="logo">
+</a>
+
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="profiles.html">Profiles</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+    <a href="register.html">Register</a>
+  </nav>
+</header>
+
+<head>
+  <title>Admin Dashboard | TALANTA MTAANI</title>
+  <style>
+    body {
+      background: black;
+      color: gold;
+      font-family: Arial;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: red;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid gold;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background: red;
+      color: gold;
+    }
+
+    button {
+      background: red;
+      color: gold;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: gold;
+      color: black;
+    }
+
+    a {
+      color: gold;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+<p>Registered Artists & Organisations</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Job Type</th>
+      <th>Skill</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Bio</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="dataTable"></tbody>
+</table>
+
+<a href="index.html">⬅ Back to Home</a>
+<script>
+if(sessionStorage.getItem("adminLoggedIn") !== "true"){
+  window.location.href = "admin.html";
+}
+</script>
+
+
+<script>
+function loadData(){
+  let table = document.getElementById("dataTable");
+  table.innerHTML = "";
+
+  let records = JSON.parse(localStorage.getItem("talantaData")) || [];
+
+  records.forEach((item, index) => {
+    let row = `
+      <tr>
+        <td>${item.name}</td>
+        <td>${item.category}</td>
+        <td>${item.job}</td>
+        <td>${item.skill}</td>
+        <td>${item.email}</td>
+        <td>${item.phone}</td>
+        <td>${item.bio}</td>
+        <td><button onclick="deleteData(${index})">Delete</button></td>
+      </tr>
+    `;
+    table.innerHTML += row;
+  });
+}
+
+function deleteData(index){
+  let records = JSON.parse(localStorage.getItem("talantaData"));
+  records.splice(index, 1);
+  localStorage.setItem("talantaData", JSON.stringify(records));
+  loadData();
+}
+
+loadData();
+</script>
+<button onclick="logout()">Logout</button>
+
+<script>
+function logout(){
+  sessionStorage.removeItem("adminLoggedIn");
+  window.location.href = "admin.html";
+}
+</script>
+
+
+</body>
+</html>
